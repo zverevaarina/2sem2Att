@@ -32,7 +32,7 @@ namespace Tree
             }
         }
 
-        public void DrawNode(Graphics g, NodeTree node)  
+        public void DrawNode(Graphics g, NodeTree node)
         {
 
             Pen myPen = Pens.Black;
@@ -89,10 +89,15 @@ namespace Tree
                 t = new NodeTree(null, null, data, x, y);
             else
                 if (data < Convert.ToInt32(t.Data))
-                AddNode(ref t.Left, data, t.X - step, t.Y + dh * step);
-            else
-                    if (data > Convert.ToInt32(t.Data))
-                AddNode(ref t.Right, data, t.X + step, t.Y + dh * step);
+            {
+                var left = t.Left;
+                AddNode(ref left, data, t.X - step, t.Y + dh * step);
+            }
+            else if (data > Convert.ToInt32(t.Data))
+            {
+                var right = t.Right;
+                AddNode(ref right, data, t.X + step, t.Y + dh * step);
+            }
         }
 
         public NodeTree FindNode(NodeTree node, int x, int y)
